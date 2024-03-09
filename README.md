@@ -1,8 +1,8 @@
 # k8s-monitoring-by-Prometheus-Grafana-using-Helm-chart
 
-Prerequisites:
-Kubernetes 1.19+
-Helm 3+
+# Prerequisites:
+# Kubernetes 1.19+
+# Helm 3+
 
 Get Helm Repository Info:
 $ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
