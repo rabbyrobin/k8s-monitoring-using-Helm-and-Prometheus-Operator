@@ -1,8 +1,10 @@
-# k8s-monitoring-by-Prometheus-Grafana-using-Helm-chart
+# k8s monitoring by Prometheus Grafana using Helm and Prometheus Operator.
 
 # Prerequisites:
 # Kubernetes 1.19+
 # Helm 3+
+
+# Part 1: Install Prometheus and Alert Manager.
 
 # Get Helm Repository Info:
 
@@ -54,7 +56,7 @@ $ kubectl get crd - To display all Custom Resource Definitions (CRD).
 
 # Now check the description of the Prometheus and Alert Manager:
 
-$ kubectl get statefulset
+$ kubectl get statefulset  // Now find the respective container
 
 # Check the status of the Operator:
 
@@ -70,19 +72,21 @@ $ kubectl get statefulset prometheus-my-prometheus-kube-prometh-prometheus -o ya
 
 $ kubectl get statefulset prometheus-my-prometheus-kube-prometh-prometheus -o yaml > prom.yaml
 
-# To find the rules file prometheus-my-prometheus-kube-prometh-prometheus-rulefiles-0 which defines the alert rules:
+# To find the rules file "prometheus-my-prometheus-kube-prometh-prometheus-rulefiles-0" which defines the alert rules:
 
 $ kubectl get configmap
 
-# Now search for the prometheus-my-prometheus-kube-prometh-prometheus-rulefiles-0 file and print it to a yaml output to see the rules.
+# Now search for the "prometheus-my-prometheus-kube-prometh-prometheus-rulefiles-0" file and print it to a yaml output to see the rules. You can add or remove rules from here.
 
 # Now check the secrets for prometheus config.
 
 $ kubectl get secrets
 
-# Now search for prometheus-my-prometheus-kube-prometh-prometheus file and print the output into yaml to see.
+# Now search for "prometheus-my-prometheus-kube-prometh-prometheus" file and print the output into yaml to see.
 
 $ kubectl get secret prometheus-my-prometheus-kube-prometh-prometheus -o yaml
 
 # Access Grafana:
+
+
 
