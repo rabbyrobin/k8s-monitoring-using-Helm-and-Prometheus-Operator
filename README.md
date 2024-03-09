@@ -86,7 +86,27 @@ $ kubectl get secrets
 
 $ kubectl get secret prometheus-my-prometheus-kube-prometh-prometheus -o yaml
 
-# Access Grafana:
+# Part 2: Access Grafana.
 
+# To list down all services.
 
+$ kubectl get svc
+
+All the services actually have cluster ip tag wgich isn't accessible from outside. to access Grafana from outside you have to setup ingress rule. For this we have to list down the pods.
+
+$ kubectl get pod
+
+It list down the name of all pods. We need the name for grafana an point ingress rule to grafana. In this setup we are gonna access grafana using port forward.
+
+# To find out the port of grafana because the container is controlled by replicaset type below command:
+
+$ kubectl get rs
+
+Now describe the grafana repicaset
+
+$ kubectl describe rs "replicaset name for grafana"     ... //You will get the port number which is 3000
+
+# Now forword the port for grafana deployment using below command which will open port 3000
+
+$ kubectl port-forward deployment/my-prometheus-grafana 3000
 
