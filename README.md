@@ -56,7 +56,7 @@ $ kubectl get crd - To display all Custom Resource Definitions (CRD).
 
 # Now check the description of the Prometheus and Alert Manager:
 
-$ kubectl get statefulset  // Now find the respective container
+$ kubectl get statefulset    #// Now find the respective container
 
 # Check the status of the Operator:
 
