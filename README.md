@@ -4,8 +4,10 @@
 # Kubernetes 1.19+
 # Helm 3+
 
-Get Helm Repository Info:
+# Get Helm Repository Info:
+
 $ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
 $ helm repo update
 
 Install Helm Chart:
