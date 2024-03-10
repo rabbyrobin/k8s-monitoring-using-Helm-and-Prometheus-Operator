@@ -4,7 +4,7 @@
 # Kubernetes 1.19+
 # Helm 3+
 
-# Part 1: Install Prometheus and Alert Manager.
+# Part 1: Install Prometheus, node exporter and Alert Manager.
 
 # Get Helm Repository Info:
 
@@ -92,11 +92,7 @@ $ kubectl get secret prometheus-my-prometheus-kube-prometh-prometheus -o yaml
 
 $ kubectl get svc
 
-All the services actually have cluster ip tag wgich isn't accessible from outside. to access Grafana from outside you have to setup ingress rule. For this we have to list down the pods.
-
-$ kubectl get pod
-
-It list down the name of all pods. We need the name for grafana an point ingress rule to grafana. In this setup we are gonna access grafana using port forward.
+All the services actually have cluster ip tag which isn't accessible from outside. to access Grafana from outside you have to setup NodePort service for grafana.
 
 # To find out the port of grafana because the container is controlled by replicaset type below command:
 
@@ -104,7 +100,7 @@ $ kubectl get rs
 
 Now describe the grafana repicaset
 
-$ kubectl describe rs "replicaset name for grafana"     ... //You will get the port number which is 3000
+$ kubectl describe rs "replicaset name for grafana"     ... //You will get the service port 3000 and host port 80.
 
 # Now edit the garafana service and change the service type from ClusterIP to NodePort. It'll map the host port 80 with the node port and garafana can be accessed from the outside of the cluster.
 
