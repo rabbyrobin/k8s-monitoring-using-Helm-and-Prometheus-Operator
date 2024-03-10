@@ -106,7 +106,20 @@ Now describe the grafana repicaset
 
 $ kubectl describe rs "replicaset name for grafana"     ... //You will get the port number which is 3000
 
-# Now forword the port for grafana deployment using below command which will open port 3000
+# Now edit the garafana service and change the service type from ClusterIP to NodePort. It'll map the host port 80 with the node port and garafana can be accessed from the outside of the cluster.
 
-$ kubectl port-forward deployment/my-prometheus-grafana 3000
+$ kubectl edit svc my-prometheus-grafana
 
+Now browse the grafana dashboard by browsing your host ip and grafana node port.
+
+# Login to grafana dashboard: Find the grafana login secrets
+
+$ kubectl get secrets
+
+$ kubectl get secrets my-prometheus-grafana -o yaml
+
+Now decode the base64 values
+
+$ echo -n "YWRtaW4=" |base64 -d      // You wil find the user name
+
+$ echo -n "cHJvbS1vcGVyYXRvcg==" |base64 -d      // You will find the password
