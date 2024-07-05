@@ -119,3 +119,40 @@ Now decode the base64 values
 $ echo -n "YWRtaW4=" |base64 -d      // You wil find the user name
 
 $ echo -n "cHJvbS1vcGVyYXRvcg==" |base64 -d      // You will find the password
+
+Now Configure Email Alerting through Grafana:
+
+Find the configmap file for grafana -
+kubectl get configmap
+kubectl edit config map my-prometheus-grafana
+To configure Grafana to send email alerts to your email address (rr.robin91@gmail.com), you'll need to add an SMTP section to the grafana.ini configuration. Here's how you can modify the existing configuration:
+apiVersion: v1
+data:
+  grafana.ini: |
+    [analytics]
+    check_for_updates = true
+    [grafana_net]
+    url = https://grafana.net
+    [log]
+    mode = console
+    [paths]
+    data = /var/lib/grafana/
+    logs = /var/log/grafana
+    plugins = /var/lib/grafana/plugins
+    provisioning = /etc/grafana/provisioning
+    [server]
+    domain = ''
+    [smtp]
+    enabled = true
+    host = smtp.gmail.com:587
+    user = your-email@gmail.com
+    password = your-app-password
+    from_address = your-email@gmail.com
+    from_name = Grafana Alerts
+    startTLS_policy = OpportunisticStartTLS
+    [alerting]
+    enabled = true
+    execute_alerts = true
+Now after configuring the configmap you have to use the command to redeploy the deployment:
+kubectl rollout restart deployment my-prometheus-grafana
+Now delete the grafana pod/pods to make this change work, it'll recreate the new pod/pods.
