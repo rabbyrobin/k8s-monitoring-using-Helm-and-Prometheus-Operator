@@ -1,4 +1,4 @@
-# k8s monitoring by Prometheus Grafana using Helm and Prometheus Operator.
+# Kubernetes Cluster monitoring by Prometheus Grafana, Node exporter installed using Helm and Prometheus Operator.
 
 # Prerequisites:
 # Kubernetes 1.19+
